@@ -32,3 +32,11 @@ def get_tours_by_departure(departure):
 
         tours[id] = tour
     return tours
+
+
+def get_tour_by_departure_and_id(departure, tour_id):
+    tours = get_tours_by_departure(departure)
+
+    for id, tour in tours.items():
+        if int(tour_id) == int(id):
+            return tour

@@ -12,9 +12,11 @@ def index():
     return render_template('index.html', tours=tours_service.get_random_tours(6))
 
 
-@app.route('/tours/<id>/')
-def tour(id):
-    return render_template('tour.html')
+@app.route('/from/<direction>/<id>/')
+def tour(direction, id):
+    from_title = departures_service.get_departure_from_title(direction)
+    tour_info = tours_service.get_tour_by_departure_and_id(direction, id)
+    return render_template('tour.html', from_title=from_title, tour=tour_info)
 
 
 @app.route('/from/<direction>/')

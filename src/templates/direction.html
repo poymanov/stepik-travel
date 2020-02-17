@@ -11,7 +11,7 @@
 <!-- CARDS -->
 <div class="row mt-5" data-test="cards">
     {% for id, tour in tours.items() %}
-    {% with tour=tour %}
+    {% with tour=tour, id=id %}
     {% include 'layout/_tour.html' %}
     {% endwith %}
     {% endfor %}
