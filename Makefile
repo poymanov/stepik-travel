@@ -12,4 +12,4 @@ logs:
 	docker-compose logs -f
 
 flush:
-	docker-compose down -v
+	docker-compose down -v --rmi all
