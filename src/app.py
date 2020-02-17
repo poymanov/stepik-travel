@@ -1,12 +1,14 @@
 from flask import Flask
 from flask import render_template
 
+import services.tours as tours_service
+
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', tours=tours_service.get_random_tours(6))
 
 
 @app.route('/tours/<id>/')
