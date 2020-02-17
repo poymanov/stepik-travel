@@ -1,6 +1,7 @@
 from flask import Flask
 from flask import render_template
 
+import services.departures as departures_service
 import services.tours as tours_service
 
 app = Flask(__name__)
@@ -18,4 +19,12 @@ def tour(id):
 
 @app.route('/from/<direction>/')
 def direction(direction):
-    return render_template('direction.html')
+    tours = tours_service.get_tours_by_departure(direction)
+    from_title = departures_service.get_departure_from_title(direction)
+    departure_info = departures_service.get_departure_info(direction)
+    return render_template('direction.html', tours=tours, from_title=from_title, departure_info=departure_info)
+
+
+@app.context_processor
+def global_data():
+    return dict(departures=departures_service.get_all_departures())

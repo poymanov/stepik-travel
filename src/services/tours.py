@@ -21,3 +21,14 @@ def get_random_tours(count):
         random_tours[random_tour_id] = tours[random_tour_id]
 
     return random_tours
+
+
+def get_tours_by_departure(departure):
+    tours = {}
+
+    for id, tour in tours_data.tours.items():
+        if tour.get('departure') != departure:
+            continue
+
+        tours[id] = tour
+    return tours
